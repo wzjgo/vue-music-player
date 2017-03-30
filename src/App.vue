@@ -122,7 +122,7 @@
 
 <script>
 // 导入音乐数据
-import MusicData from './music-data';
+//import MusicData from './music-data';
 
 // 导入封装的 localStorage 相关方法
 import Store from './store';
@@ -139,6 +139,7 @@ export default {
     this.musicTitle = this.musics[this.index].name;
     this.musicImgSrc = this.musics[this.index].musicImgSrc || this.musicSrcDefault;
     this.DOM.audio.addEventListener('ended', () => {this.toChange('next').then(this.toAnimate);});
+    this.MusicData = Store.fetchFromBe()
     Store.fetch('musics').length === 0 ? Store.save(this.musics) : null;
 
   },
@@ -148,7 +149,8 @@ export default {
       playBtnSrc: 'http://omratag7g.bkt.clouddn.com/music_play_button.png',
       DOM: {},
       musicImgSrc: '',
-      musics: Store.fetch('musics').length ? Store.fetch('musics') : Object.assign([], MusicData),
+      //musics: Store.fetch('musics').length ? Store.fetch('musics') : Object.assign([], this.MusicData),
+      musics:Store.fetchFromBe(),
       index: 0,
       musicSrc: '',
       isImgAnimate: false,
