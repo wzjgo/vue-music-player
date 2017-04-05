@@ -1,4 +1,4 @@
-FROM index.qiniu.com/nginx
+FROM nginx
 
 WORKDIR /
 

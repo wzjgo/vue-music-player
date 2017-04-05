@@ -3,7 +3,6 @@ const STORAGE_KEY = 'musics';
 export default {
 
   fetchFromBe() {
-    debugger
     var myHeaders = new Headers();
 
     var myInit = {
@@ -11,15 +10,17 @@ export default {
       headers: myHeaders,
       cache: 'default'
     };
-    return fetch(' http://127.0.0.1:8081/musics', myInit)
+    let origin = window.location.origin
+    return fetch(`http://ddqb1zpk.bq.cloudappl.com/api/musics`, myInit)
       .then(resp => {
-        return resp.json()
+        let musics = resp.json()
+        return musics
       })
   },
   fetch(key = STORAGE_KEY) {
     return JSON.parse(window.localStorage.getItem(key) || '[]');
   },
   save(items, key = STORAGE_KEY) {
-    window.localStorage.setItem(key, JSON.stringify(items));
+    //window.localStorage.setItem(key, JSON.stringify(items));
   }
 }
